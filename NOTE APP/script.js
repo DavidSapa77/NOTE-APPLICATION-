@@ -8,10 +8,16 @@ const editBtn = document.querySelectorAll(".edit");
 const noteBox = document.getElementById("note-box");
 const alertBox = document.querySelector(".alert");
 const alertMessage = document.querySelector(".alert-message");
-
+const filterInput = document.querySelector('.filter');
+const loading = document.querySelector('.loading');
 
 let saveNote = JSON.parse(localStorage.getItem("notes")) || [];
 let editNoteIndex = null;
+
+
+
+// loading state
+setTimeout(() => (loading.style.display = "none"), 4000);
 
 function saveData() {
     localStorage.setItem("notes", JSON.stringify(saveNote));
@@ -92,13 +98,25 @@ function formarDataLabel(dataString) {
         return new Date(dataString).toDateString(locale, option);
     }
 }
+// filter logic
+
+filterInput.addEventListener('input', () => {
+    const filerText = filterInput.value.toLowerCase();
+
+    const filteredNotes = saveNote.filter(note =>
+        note.topic.toLowerCase().includes(filerText) || note.description.toLowerCase().includes(filerText)
+
+    );
+    displayNote(filteredNotes);
+});
+
 
 
 //display saved note
-function displayNote() {
+function displayNote(notes = saveNote) {
     noteBox.innerHTML = "";
 
-    saveNote.forEach((note, i) => {
+    notes.forEach((note, i) => {
         let noteCard = document.createElement("div");
         noteCard.classList.add("note-card");
         noteCard.innerHTML = `
@@ -184,11 +202,4 @@ function editNote() {
     })
 }
 
-
-
-
-
-
-
-
-document.addEventListener("DOMContentLoaded", displayNote);
+document.addEventListener("DOMContentLoaded", displayNote(saveNote));
