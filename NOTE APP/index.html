@@ -15,19 +15,42 @@
         <p>Save your note with just a click</p>
     </div>
     <section class="note-page">
+        <div class="open-form">
+            <span id="open-form">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+</svg>
+
+            </span>
+        </div>
+
         <div class="notes-container">
             <div class="note-header">
                 <h1>Note History</h1>
+                <div class="help" id="help">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+</svg>
+
+                </div>
+            </div>
+
+            <div class="info hidden" id="info">
+                Welcome to your eizyNote!<br /><br /> You can write and manage your notes easily here.<br /><br /> Use <span>&lt;br&gt;</span> when you want to break a line in your notes.
+                <br /> Example: "This is the first line<span>&lt;br&gt;</span> <br />This is the second line"<br /><br /> Use <span>&lt;span&gt;</span> when you want to
+                <span>highlight</span> any important information.<br /> Example: "Don’t forget to <span>&lt;span&gt;</span
+          ><span>save your notes</span> <span>&lt;/span&gt;</span> before closing!"
+                <br /><br /> That’s it! 🎉 Happy noting.
             </div>
             <div class="filter-box">
                 <label>Filter</label>
                 <input type="text" class="filter" placeholder="Filter by topic or description">
             </div>
-            <div class="note" id="note-box">
+            <div class="notes" id="note-box">
 
             </div>
         </div>
-        <div class="note-form">
+        <div class="note-form hidden" id="note-modal">
 
             <div class="form">
                 <div class="form-header">

@@ -10,6 +10,40 @@ const alertBox = document.querySelector(".alert");
 const alertMessage = document.querySelector(".alert-message");
 const filterInput = document.querySelector('.filter');
 const loading = document.querySelector('.loading');
+const openBtn = document.getElementById('open-form');
+const forModal = document.getElementById('note-modal');
+const help = document.getElementById('help');
+const info = document.getElementById('info');
+// workingin the modal
+
+function
+toggleForm() {
+    forModal.classList.toggle("hidden");
+
+    if (!forModal.classList.contains('hidden')) {
+        openBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+</svg>
+`;
+    } else {
+        openBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+</svg>`;
+    }
+}
+
+function toggleInfo() {
+    info.classList.toggle('hidden')
+
+}
+
+
+openBtn.addEventListener("click", toggleForm);
+help.addEventListener("click", toggleInfo);
+
+
 
 let saveNote = JSON.parse(localStorage.getItem("notes")) || [];
 let editNoteIndex = null;
@@ -65,6 +99,7 @@ function addNote() {
     }
     displayNote();
     saveData();
+    toggleForm();
     noteTopic.value = noteDescription.value = "";
 }
 noteSave.addEventListener("click", addNote);
@@ -175,7 +210,7 @@ function deleteNote() {
             saveNote.splice(index, 1);
 
             alertBox.classList.add("show");
-            alertMessage.textContent = "😒Note deleted successfully.";
+            alertMessage.textContent = "😒 Note deleted successfully.";
             setTimeout(() => alertBox.classList.remove("show"), 3000);
 
             displayNote();
@@ -198,6 +233,8 @@ function editNote() {
 
             // update text of the button
             noteSave.textContent = 'Update Note'
+            toggleForm();
+
         })
     })
 }
